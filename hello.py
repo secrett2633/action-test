@@ -1,14 +1,27 @@
-def selection_sort(arr):
-    n = len(arr)
-    for i in range(n):
-        min_idx = i
-        for j in range(i+1, n):
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
-    return arr
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+
+    def merge(left, right):
+        result = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                result.append(left[i])
+                i += 1
+            else:
+                result.append(right[j])
+                j += 1
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
+
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)
 
 # 사용 예시
-arr = [64, 25, 12, 22, 11]
-sorted_arr = selection_sort(arr)
+arr = [38, 27, 43, 3, 9, 82, 10]
+sorted_arr = merge_sort(arr)
 print("정렬된 배열:", sorted_arr)
