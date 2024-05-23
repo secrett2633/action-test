@@ -12,5 +12,3 @@ def selection_sort(arr):
 arr = [64, 25, 12, 22, 11]
 sorted_arr = selection_sort(arr)
 print("정렬된 배열:", sorted_arr)
-
-
